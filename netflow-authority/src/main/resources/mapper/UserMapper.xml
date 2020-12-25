@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netflow.mapper.UserMapper">
+
+    <resultMap id ="userResult" type ="com.netflow.bean.User">
+        <result column="id" property ="id" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="id_card" property="idCard" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday" jdbcType="DATE"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_person" property="createPerson" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_person" property="updatePerson" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getAllUser" resultMap="userResult">
+        select * from authority.user
+    </select>
+
+    <select id="getUserByUsername" parameterType="java.lang.String" resultMap="userResult">
+        select * from authority.user where username = #{username}
+    </select>
+
+    <insert id="insertUser" parameterType="com.netflow.bean.User">
+        insert into  authority.user(id,username,password,name,id_card,email,birthday,create_time,create_person,update_time,update_person)
+        values(#{id},#{username},#{password},#{name},#{idCard},#{email},#{birthday},#{createTime},#{createPerson},#{updateTime},#{updatePerson})
+    </insert>
+
+</mapper>
