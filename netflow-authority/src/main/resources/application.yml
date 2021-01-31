@@ -1,7 +1,7 @@
 server:
   port: 8888
   servlet:
-    context-path: /netflow
+    context-path: /netflow/authority
 
 spring:
   datasource:
@@ -17,4 +17,8 @@ spring:
 authority:
   jwt:
     expire: 600000
-    secret: newflow_token
+    secret: newflow_token'
+
+logging:
+  level:
+    com.netflow.mapper : debug

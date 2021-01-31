@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netflow.mapper.ResourceMapper">
+
+    <resultMap id ="resourceResult" type ="com.netflow.bean.Resource">
+        <result column="id" property ="id" jdbcType="VARCHAR"/>
+        <result column="resource_name" property="resourceName" jdbcType="VARCHAR"/>
+        <result column="resource_type" property="resourceType" jdbcType="INTEGER"/>
+        <result column="app_id" property="appId" jdbcType="VARCHAR"/>
+        <result column="pid" property="pid" jdbcType="VARCHAR"/>
+        <result column="seq_id" property="seqId" jdbcType="INTEGER"/>
+        <result column="router_url" property="routerUrl" jdbcType="VARCHAR"/>
+        <result column="icon_class" property="iconClass" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_person" property="createPerson" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_person" property="updatePerson" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="getResourceList" parameterType="java.util.Map" resultMap="resourceResult">
+        select * from authority.resource
+        <if test="appId != null and appId != ''">
+            where app_id = #{appId}
+        </if>
+        <if test="page != null and limit != null">
+            limit #{page}, #{limit}
+        </if>
+
+    </select>
+
+    <select id="getResourceByKey" parameterType="java.util.Map" resultMap="resourceResult">
+        select * from authority.resource
+        where resource_name like '%${keyword}%'
+        <if test="appId != null and appId != ''">
+            and app_id = #{appId}
+        </if>
+        limit ${page},${limit}
+    </select>
+
+    <select id="getResourceById" parameterType="java.lang.String" resultMap="resourceResult">
+        select * from authority.resource where id = #{id}
+    </select>
+
+    <select id="getResourceByCondition" parameterType="com.netflow.bean.Resource" resultMap="resourceResult">
+        select * from authority.resource
+        <trim prefix="where" suffixOverrides="and">
+            <if test="resourceName != null and resourceName != ''">
+                resource_name = #{resourceName} and
+            </if>
+            <if test="resourceType != null">
+                resource_type = #{resourceType} and
+            </if>
+            <if test="appId != null and appId != ''">
+                app_id = #{appId} and
+            </if>
+            <if test="pid != null and pid != ''">
+                pid = #{pid} and
+            </if>
+            <if test="seqId != null">
+                seq_id = #{seqId} and
+            </if>
+            <if test="routerUrl != null and routerUrl != ''">
+                router_url = #{routerUrl} and
+            </if>
+            <if test="iconClass != null and iconClass != ''">
+                icon_class = #{iconClass} and
+            </if>
+            <if test="createPerson != null and createPerson != ''">
+                create_person = #{createPerson} and
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime} and
+            </if>
+            <if test="updatePerson != null and updatePerson != ''">
+                update_person = #{updatePerson} and
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime} and
+            </if>
+        </trim>
+    </select>
+
+    <select id="getResourceIdByPid" parameterType="java.lang.String" resultType="java.lang.String">
+        select id from authority.resource where pid = #{pid}
+    </select>
+    <select id="getResourceByNameApp" parameterType="java.util.Map" resultMap="resourceResult">
+        select * from authority.resource
+        <trim prefix="where" suffixOverrides="and">
+            <if test="resourceName != null and resourceName != ''">
+                resource_name = #{resourceName} and
+            </if>
+            <if test="appId != null and appId != ''">
+                app_id = #{appId} and
+            </if>
+        </trim>
+    </select>
+
+    <select id="countResource"  parameterType="java.util.Map" resultType="java.lang.Long">
+        select count(1) from authority.resource
+        <if test="appId != null and appId != ''">
+            where app_id = #{appId}
+        </if>
+    </select>
+
+    <select id="countResourceByKey" parameterType="java.util.Map" resultType="java.lang.Long">
+        select count(1) from authority.resource where resource_name like '%${keyword}%'
+        <if test="appId != null and appId != ''">
+            and app_id = #{appId}
+        </if>
+    </select>
+
+    <insert id="insertResource" parameterType="com.netflow.bean.Resource">
+        insert into  authority.resource(id,resource_name,resource_type,app_id,pid,seq_id,router_url,icon_class,create_time,create_person,update_time,update_person)
+        values(#{id},#{resourceName},#{resourceType},#{appId},#{pid},#{seqId},#{routerUrl},#{iconClass},#{createTime},#{createPerson},#{updateTime},#{updatePerson})
+    </insert>
+
+    <update id="updateResource" parameterType="com.netflow.bean.Application">
+        update authority.resource
+        <trim prefix="set" suffixOverrides=",">
+            <if test="resourceName != null and resourceName != ''">
+                resource_name = #{resourceName} ,
+            </if>
+            <if test="resourceType != null">
+                resource_type = #{resourceType} ,
+            </if>
+            <if test="appId != null and appId != ''">
+                app_id = #{appId} ,
+            </if>
+            <if test="pid != null and pid != ''">
+                pid = #{pid} ,
+            </if>
+            <if test="seqId != null">
+                seq_id = #{seqId} ,
+            </if>
+            <if test="routerUrl != null and routerUrl != ''">
+                router_url = #{routerUrl} ,
+            </if>
+            <if test="iconClass != null and iconClass != ''">
+                icon_class = #{iconClass} ,
+            </if>
+            <if test="createPerson != null and createPerson != ''">
+                create_person = #{createPerson} ,
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime} ,
+            </if>
+            <if test="updatePerson != null and updatePerson != ''">
+                update_person = #{updatePerson} ,
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime} ,
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteResourceById" parameterType="java.lang.String">
+        delete from authority.resource where id = #{id}
+    </delete>
+
+
+</mapper>

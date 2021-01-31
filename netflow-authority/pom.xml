@@ -6,10 +6,12 @@
         <artifactId>netflow-parent</artifactId>
         <groupId>com.netflow</groupId>
         <version>1.0</version>
+        <relativePath>../netflow-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>netflow-authority</artifactId>
+    <version>1.0</version>
 
 
 </project>

@@ -28,6 +28,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         }
         response.setContentType("application/json; charset=utf-8");
         JSONObject object = new JSONObject();
+        response.setStatus(401);
         object.put("errorCode","-3");
         object.put("errorMsg","token过期,请重新登录");
         response.getWriter().append(object.toJSONString());

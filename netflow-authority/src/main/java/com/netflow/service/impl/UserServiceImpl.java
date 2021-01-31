@@ -4,6 +4,7 @@ import com.netflow.bean.User;
 import com.netflow.common.BaseError;
 import com.netflow.common.BaseErrorEnum;
 import com.netflow.exception.DuplicatedException;
+import com.netflow.mapper.RoleUserMapper;
 import com.netflow.mapper.UserMapper;
 import com.netflow.service.UserService;
 import com.netflow.utils.JwtUtil;
@@ -31,6 +32,12 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     /**
+     * 角色用户关联操作类
+     */
+    @Autowired
+    private RoleUserMapper roleUserMapper;
+
+    /**
      * 登录
      * @param user
      * @return
@@ -48,12 +55,24 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 获取所有用户信息
+     * @Param page
+     * @Param limit
      * @return
      */
     @Override
-    public List<User> getAllUser() {
-        List<User> users = userMapper.getAllUser();
+    public List<User> getAllUser(Integer page, Integer limit) {
+        List<User> users = userMapper.getAllUser((page-1)*limit, limit);
         return users;
+    }
+
+    @Override
+    public User getUserById(String id) {
+        return userMapper.getUserById(id);
+    }
+
+    @Override
+    public List<User> getUserByKey(Integer page, Integer limit, String keyword) {
+        return userMapper.getUserByKey((page-1)*limit, limit, keyword);
     }
 
     /**
@@ -86,4 +105,28 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.insertUser(user);
     }
+
+    @Override
+    public int updateUser(User user) {
+        user.setUpdateTime(new Timestamp(new Date().getTime()));
+        return userMapper.updateUser(user);
+    }
+
+    @Override
+    public int deleteUserById(String id) {
+        roleUserMapper.deleteRoleUserByCondition(null,id,null);
+        return userMapper.deleteUserById(id);
+    }
+
+    @Override
+    public long getUserCount() {
+        return userMapper.getUserCount();
+    }
+
+    @Override
+    public long getUserCountByKey(String keyword) {
+        return userMapper.getUserCountByKey(keyword);
+    }
+
+
 }

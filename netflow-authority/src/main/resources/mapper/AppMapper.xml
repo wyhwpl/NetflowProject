@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netflow.mapper.AppMapper">
+
+    <resultMap id ="appResult" type ="com.netflow.bean.Application">
+        <result column="id" property ="id" jdbcType="VARCHAR"/>
+        <result column="app_name" property="appName" jdbcType="VARCHAR"/>
+        <result column="home_url" property="homeUrl" jdbcType="VARCHAR"/>
+        <result column="image_base" property="imageBase" jdbcType="LONGVARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_person" property="createPerson" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_person" property="updatePerson" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="appTreeResult" type="com.netflow.bean.AppTree">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="app_name" property="label" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getAppList" resultMap="appResult">
+        select * from authority.application
+    </select>
+
+    <select id="getAppTree" resultMap="appTreeResult">
+        select id, app_name from authority.application
+    </select>
+
+    <select id="getAppById" parameterType="java.lang.String" resultMap="appResult">
+        select * from authority.application where id = #{id}
+    </select>
+
+    <insert id="insertApp" parameterType="com.netflow.bean.Application">
+        insert into  authority.application(id,app_name,home_url,image_base,create_time,create_person,update_time,update_person)
+        values(#{id},#{appName},#{homeUrl},#{imageBase},#{createTime},#{createPerson},#{updateTime},#{updatePerson})
+    </insert>
+
+    <update id="updateApp" parameterType="com.netflow.bean.Application">
+        update authority.application
+        <trim prefix="set" suffixOverrides=",">
+            <if test="appName != null and appName != ''">
+                app_name = #{appName} ,
+            </if>
+            <if test="homeUrl != null and homeUrl != ''">
+                home_url = #{homeUrl} ,
+            </if>
+            <if test="imageBase != null and imageBase != ''">
+                image_base = #{imageBase} ,
+            </if>
+            <if test="createPerson != null and createPerson != ''">
+                create_person = #{createPerson} ,
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime} ,
+            </if>
+            <if test="updatePerson != null and updatePerson != ''">
+                update_person = #{updatePerson} ,
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime} ,
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAppById" parameterType="java.lang.String">
+        delete from authority.application where id = #{id}
+    </delete>
+
+
+</mapper>

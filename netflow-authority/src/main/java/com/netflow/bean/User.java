@@ -12,6 +12,7 @@ public class User {
     private String id;
     private String username;
     private String password;
+    private String phone;
     private String name;
     private String idCard;
     private String email;
@@ -43,6 +44,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getName() {
@@ -107,5 +116,23 @@ public class User {
 
     public void setUpdatePerson(String updatePerson) {
         this.updatePerson = updatePerson;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", name='" + name + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", email='" + email + '\'' +
+                ", birthday=" + birthday +
+                ", createTime=" + createTime +
+                ", createPerson='" + createPerson + '\'' +
+                ", updateTime=" + updateTime +
+                ", updatePerson='" + updatePerson + '\'' +
+                '}';
     }
 }

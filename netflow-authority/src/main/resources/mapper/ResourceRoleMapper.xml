@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netflow.mapper.ResourceRoleMapper">
+
+    <resultMap id ="resourceRoleResult" type ="com.netflow.bean.ResourceRole">
+        <result column="id" property ="id" jdbcType="VARCHAR"/>
+        <result column="role_id" property="roleId" jdbcType="VARCHAR"/>
+        <result column="resource_id" property="resourceId" jdbcType="VARCHAR"/>
+        <result column="resource_type" property="resourceType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getAllResourceRole" resultMap="resourceRoleResult">
+        select * from authority.resource_role
+    </select>
+
+    <select id="getResourceRoleByCondition" parameterType="com.netflow.bean.ResourceRole" resultMap="resourceRoleResult">
+        select * from authority.resource_role
+        <trim prefix="where" suffixOverrides="and">
+            <if test="id != null and id != ''">
+                id = #{id} and
+            </if>
+            <if test="roleId != null and roleId != ''">
+                role_id = #{roleId} and
+            </if>
+            <if test="resourceId != null and resourceId != ''">
+                resource_id = #{resourceId} and
+            </if>
+            <if test="resourceType != null">
+                resource_type = #{resourceType} and
+            </if>
+        </trim>
+    </select>
+
+    <insert id="insertResourceRole" parameterType="com.netflow.bean.ResourceRole">
+        insert into  authority.resource_role(id,role_id,resource_id,resource_type)
+        values(#{id},#{roleId},#{resourceId},#{resourceType})
+    </insert>
+
+    <update id="updateResourceRole" parameterType="com.netflow.bean.ResourceRole">
+        update authority.resource_role
+        <trim prefix="set" suffixOverrides=",">
+            <if test="roleId != null and roleId != ''">
+                role_id = #{roleId} ,
+            </if>
+            <if test="resourceId != null and resourceId != ''">
+                resource_id = #{resourceId} ,
+            </if>
+            <if test="resourceType != null">
+                resource_type = #{resourceType} ,
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteResourceRoleById" parameterType="java.lang.String">
+        delete from authority.resource_role where id = #{id}
+    </delete>
+
+    <delete id="deleteResourceRoleByCondition" parameterType="java.util.Map">
+        delete from authority.resource_role
+        <trim prefix="where" suffixOverrides="and">
+            <if test="id != null and id != ''">
+                id = #{id} and
+            </if>
+            <if test="roleId != null and roleId != ''">
+                role_id = #{roleId} and
+            </if>
+            <if test="resourceId != null and resourceId != ''">
+                resource_id = #{resourceId} and
+            </if>
+            <if test="resourceType != null">
+                resource_type = #{resourceType} and
+            </if>
+        </trim>
+    </delete>
+
+</mapper>

@@ -18,9 +18,27 @@ public interface UserService {
 
     /**
      * 获取所有用户信息
+     * @Param page
+     * @Param limit
      * @return
      */
-    List<User> getAllUser();
+    List<User> getAllUser(Integer page, Integer limit);
+
+    /**
+     * 获取指定id的用户信息
+     * @param id
+     * @return
+     */
+    User getUserById(String id);
+
+    /**
+     * 根据关键词获取所有用户信息
+     * @Param page
+     * @Param limit
+     * @Param keyword
+     * @return
+     */
+    List<User> getUserByKey(Integer page, Integer limit,String keyword);
 
     /**
      * 根据用户名获取用户信息
@@ -35,4 +53,30 @@ public interface UserService {
      * @return
      */
     int insertUser(User user);
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    int updateUser(User user);
+
+    /**
+     * 根据主键删除用户
+     * @param id
+     * @return
+     */
+    int deleteUserById(String id);
+
+    /**
+     * 获取用户信息总数
+     * @return
+     */
+    long getUserCount();
+
+    /**
+     * 根据关键词获取用户信息总数
+     * @return
+     */
+    long getUserCountByKey(String keyword);
 }
