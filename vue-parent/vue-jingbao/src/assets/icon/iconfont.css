@@ -1,0 +1,29 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1611131449675'); /* IE9 */
+  src: url('iconfont.eot?t=1611131449675#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAQAAAsAAAAACKwAAAOxAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDHAqEdIQXATYCJAMQCwoABCAFhG0HPBt9B8iehbEbbXKrlcalxstbKhyCB8zre2ky2KT9gBfUTVRnRZ8EnABvzFlGLGzuJoHkFOKjLaZAKaCwbkSTu19AXuCJB6A1Hil0/P+5HN/yA1x9O8tlzEl721EvwDiggMYaekQVSILeAzzDBB+8DAFokuQjqtW4/0IThTNLAKJHV12CZsmO6qkW+BF4WzYqxCw8+K3J1kVgZvx98Zoi8YOFR+JcVacPKqzfPO8p3f8uLcrFXc8LSNtAAvmAAtGl1d9OJU3lI9FGYZUSwO++Y8Ez86z9857//5PyVvR++ssDgcQC4cWptAEoRmkJz4zPQcCz9hwkPO9ZgQXwgUz3A1HgEvCGiIQdHiRBdlR0VFRIiK0ci8frLVLDQ6Zscjeb0KlbA1sa6LwEFm3K0PW1ZuORZLFgSa+pW4UIbDUmXrJF630HE3A39zZTN8dC6dSt0WLF4axphe76LnrDFjHBoMu+Q5lmUQGGB528idbqW9WDz9wZyjW3my46mBG04XCcXHokO3j9odgW3c10zrjrmjvSbmjQnS1HNtHC9DBCD6knBmtMl7K1MbqtoQ61wte1SZAOw0qGrrAd4ji2Tc/nPmHjjFNbKo1ziOWs+7DfWvvD/ffdUDsQcSDSjbWCV6xiC6tt4bs8LnKrDAwrslez/8O6rpFOcNKcQKH9kePsD85KzNrU/R9WD6JY4dapda65nsD8Tqe0/umiq9xVRbUbt6wcfTQoNCE0KIwgVj51yGzwx9Yw0tmzfUPR16lau0wO+hy56hldgZrMyPPB+/d5KBG1QyteHTKyGuPO4eAD4P9POVOq2HJUulowM0Yh3f/Dbyi5Z0sYlPvqNwqAhwVMaVSOM/ClKkYrvn3FyDZlqhyHUrral1uVio768DZWaTTwnecgzOM1jJGjK0HgJzIHCx+JIPGTgSgiH3gwFAMvfiqCJq+a2w3h+qkgVC4gj/EAghA7wSKIIyAJcQlRxCPwEOUteAmJBE2jhB9oyEpXXbUfSTGp2K7Argp7mueK20n1N+mJI4VFVUz9UxiZUSxcoFA1eyKPwjWW9E/15YBYw04hu1gDriPHYewTskVKPO0Sx/6qYMFObQJN27MLbaoKEUmMqFA7BdSVgnm0sHusXfv8N6JLOCRhD68h/o+EImb/qLACCo1ATnpvFO9ZhveX0i0NENN4Wich5kI10EscN8VQn/ZxFqKITXWZkfCtFKROncbqp/sb3Xe4B9A4ryhhCSmU8KD6t5e8cp/29b79FFYJAAAAAA==') format('woff2'),
+  url('iconfont.woff?t=1611131449675') format('woff'),
+  url('iconfont.ttf?t=1611131449675') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1611131449675#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-scan:before {
+  content: "\e60b";
+}
+
+.icon-pc:before {
+  content: "\e76d";
+}
+
+.icon-qrcode:before {
+  content: "\e663";
+}
+
